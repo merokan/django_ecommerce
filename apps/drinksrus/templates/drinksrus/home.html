@@ -2,8 +2,50 @@
 <html>
 <head>
     <title>DrinksRUs</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'drinksrus/home_styles.css' %}">
 </head>
 <body>
-    <h1>placeholder for home page</h1>
+    <div id="wrapper">
+        <div id="header">
+            <h2>Drinks R Us</h2>
+            <h4><a href="">Shopping Cart</a></h4>
+            <h4>(# items in cart)</h4>
+        </div>
+        <div id="main_content">
+            <div id="sidebar">
+                <form action = "" method="POST">
+                    {% csrf_token %}
+                    <input type="text" value="Product Name">
+                </form>
+                <h3>Categories</h3>
+                <h5>Future Category Names</h5>
+                <h5>Future Category Names</h5>
+                <h5>Future Category Names</h5>
+                <h5><a href="">Show All</a></h5>
+            </div>
+            <div id="categories">
+                <div id="categories_header">
+                    <div id="cat_header_left">
+                        <h1>Future Category Name</h1>
+                    </div>
+                    <div id="cat_header_right">
+                        <h5><a href="">first</a></h5>
+                        <h5><a href="">prev</a></h5>
+                        <h5>(current page #)</h5>
+                        <h5><a href="">next</a></h5>
+                        <form action="" method="POST">
+                            {%csrf_token%}
+                            <select name="sort">
+                                <option value="price">Price</option>
+                                <option value="most_popular">Most Popular</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+                <h3>Future product images, price, and name</h3>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

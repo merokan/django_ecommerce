@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Orders Dashboard</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <h3>Dashboard</h3>
+            <h3><a href="">Orders</a></h3>
+            <h3><a href="">Products</a></h3>
+            <h3><a href="">log out</a></h3>
+        </div>
+        <div id="main_content">
+            <form action="" method="POST">
+                {%csrf_token%}
+                <input type="text" value="search">
+                <select name="status">
+                    <option value="show_all">Show All</option>
+                    <option value="process">Order In Process</option>
+                    <option value="shipped">Shipped</option>
+                </select>  
+            </form>
+            <table>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Billing Address</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>(future order#)</td>
+                    <td>(future name)</td>
+                    <td>(future date)</td>
+                    <td>(future billing)</td>
+                    <td>(future total)</td>
+                    <td>(future status)</td>
+                </tr>
+            </table>
+        </div>
+        <div id="footer">
+            <a href="">1</a>
+            <a href="">2</a>
+            <a href="">3</a>
+        </div>
+    </div>
+</body>
+</html>
