@@ -7,7 +7,9 @@ class UserManager(models.Manager):
     def register(self, postData):
         errors = {}
         userList = User.objects.filter(email = postData['email'])
+
         email_regex = re.compile(r'^[a-zA-Z0-9.+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]+$')
+        
         if len(postData['first_name']) < 2:
             errors["first_name"] = "First name should be more than 2 characters"
         if len(postData['last_name']) < 2:

@@ -21,34 +21,34 @@ def register(request):
     else:
         hash1 = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt())
         user = User.objects.create(first_name= request.POST['first_name'], last_name= request.POST['last_name'], email = request.POST['email'], password = hash1)
-        request.session['id'] = user.id
-        return redirect('/home')
+        return redirect('/')
 
 def login(request):
     if request.method == "POST":
-        userList=User.objects.filter(email=request.POST['email'])
         errors = User.objects.login(request.POST)
-        if len(userList) > 0:
-            print userList
-            user = userList[0]
-        else:
-            messages.error(request, "Email or password incorrect")
+        if len(errors) >0:
             return redirect('/')
-        if bcrypt.checkpw(request.POST['password'].encode(), user.password.encode()):
+        else:
+            user= User.objects.get(email =request.Post['email'])
             request.session['id'] = user.id
+            request.session['cart'] = {}
             return redirect('/home')
-        else:
-            messages.error(request, "Email or password incorrect")
-            return redirect('/')
     else:
         return redirect('/')
 
-def home(request):
+def home(request, pagenum):
     if not 'id' in request.session:
         return redirect('/')
     else:
-        return render(request, 'drinksrus/home.html')
+        context = {
+            "categories": Category.objects.all(),
+            "products": Product.objects.all().order_by("-created_at") [((pagenum-1) * 15 ) :((pagenum-1) * 15 ) +15],
+            "pages": pagenum,
+            "cart": request.session['cart']
+        }
+        return render(request, 'drinksrus/home.html', context)
 
 def logout(request):
     del request.session['id']
+    del request.session['cart']
     return redirect('/')
