@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'drinksrus/admin_login_styles.css' %}">
+</head>
+<body>
+    <div id="login">
+        <h2>Admin Login Page</h2>
+        <form action="/adminlogin" method="POST">
+            {% csrf_token %}
+            email: <input type="text" name="email"><br><br>
+            password: <input type="password" name="password"><br><br>
+            <input type="submit" value="Login" class="button">
+        </form>
+    </div>
+</body>
+</html>

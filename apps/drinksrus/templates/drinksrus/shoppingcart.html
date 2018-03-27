@@ -6,46 +6,57 @@
     <link rel="stylesheet" href="{% static 'drinksrus/shoppingcart_styles.css' %}">
 </head>
 <body>
-    <table>
-        <tr>
-            <th>Item</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
-        </tr>
-        <tr>
-            <td>Future Item</td>
-            <td>Future Price</td>
-            <td>Future Qty</td>
-            <td>Future Total</td>
-        </tr>
-    </table>
-    <h5>Total:</h5>
-    <a href=""><button>Continue Shopping</button></a>
-    <h2>Shipping Information</h2>
-    <form action="" method="POST">
-        First Name: <input type="text">
-        Last Name: <input type="text">
-        Address: <input type="text">
-        Address 2: <input type="text">
-        City: <input type="text">
-        State: <input type="text">
-        Zip Code: <input type="text">
-    </form>
-    <h2>Billing Information</h2>
-    <form action="" method="POST">
-        <input type="checkbox">
-        First Name: <input type="text">
-        Last Name: <input type="text">
-        Address: <input type="text">
-        Address 2: <input type="text">
-        City: <input type="text">
-        State: <input type="text">
-        Zip Code: <input type="text">
-        Card Number: <input type="text">
-        Security Code: <input type="text">
-        Expiration: <input type="date">
-        <input type="submit" value="Pay">
-    </form>
+    <div id="wrapper">
+        <div id="header">
+            <h2>Drinks R Us</h2>
+            <h4><a href="">Shopping Cart</a></h4>
+            <h4>(# items in cart)</h4>
+        </div>
+        <div id="cart">
+            <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+                <tr>
+                    <td>Future Item</td>
+                    <td>Future Price</td>
+                    <td>Future Qty</td>
+                    <td>Future Total</td>
+                </tr>
+            </table>
+            <h5>Total:</h5>
+            <a href=""><button>Continue Shopping</button></a>
+        </div>
+        <div id="info">
+            <h2>Shipping Information</h2>
+            <form action="" method="POST">
+                First Name: <input type="text">
+                Last Name: <input type="text">
+                Address: <input type="text">
+                Address 2: <input type="text">
+                City: <input type="text">
+                State: <input type="text">
+                Zip Code: <input type="text">
+            </form>
+            <h2>Billing Information</h2>
+            <form action="" method="POST">
+                <input type="checkbox">
+                First Name: <input type="text">
+                Last Name: <input type="text">
+                Address: <input type="text">
+                Address 2: <input type="text">
+                City: <input type="text">
+                State: <input type="text">
+                Zip Code: <input type="text">
+                Card Number: <input type="text">
+                Security Code: <input type="text">
+                Expiration: <input type="date">
+                <input type="submit" value="Pay">
+            </form>
+        </div>
+    </div>
 </body>
 </html>
