@@ -31,8 +31,55 @@ class UserManager(models.Manager):
 class User(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
-    password = models.CharField(max_length=16)
+    email = models.EmailField()
+    password = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    objects=UserManager()
+    user_level = models.IntegerField()
+    objects = userManager()
+
+class Address(models.Model):
+    user = models.ForeignKey(User, related_name='client')
+    address = models.CharField(max_length=100)
+    address_2 = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class Order(models.Model):
+    user = models.ForeignKey(User, related_name='client')
+    total_price = models.IntegerField()    
+    status = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class Category(models.Model):
+    category = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class Product(models.Model):
+    item = models.CharField(max_length=100)
+    description = models.CharField(max_length=200)
+    price = models.IntegerField()
+    category = models.ForeignKey(Category, related_name='the_products')
+    quantity = models.IntegerField()
+    image = models.ImageField()
+    order = models.ForeignKey(Order, related_name='products')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class Review(models.Model):
+    content = models.TextField()
+    user = models.ForeignKey(User, related_name='reviews')
+    product = models.ForeignKey(Product, related_name='product_reviews')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class Comment(models.Model):
+    comment = models.TextField()
+    review = models.ForeignKey(Review, related_name='comments')
+    user = models.ForeignKey(User, related_name='comments')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
