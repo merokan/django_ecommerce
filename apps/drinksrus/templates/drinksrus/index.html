@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login/Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'drinksrus/index_styles.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Welcome!</h1>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div id="register">
+            <h2>Register</h2>
+            <form action="/register" method="POST">
+                {% csrf_token %}
+                First Name: <input type="text" name="first_name"><br><br> 
+                Last Name: <input type="text" name="last_name"><br><br>
+                Email: <input type="text" name="email"><br><br>
+                Password: <input type="password" name="password"><br>
+                <p>*Password should be at least 8 characters</p><br><br>
+                Confirm Password<input type="password" name="confpw"><br><br>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+        <div id="login">
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                {% csrf_token %}
+                Email: <input type="text" name="email"><br><br>
+                Password: <input type="password" name="password"><br><br>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
