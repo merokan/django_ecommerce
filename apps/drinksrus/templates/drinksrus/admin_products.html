@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Products</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <h3>Dashboard</h3>
+            <h3><a href="">Orders</a></h3>
+            <h3><a href="">Products</a></h3>
+            <h3><a href="">log out</a></h3>
+        </div>
+        <div id="main_content">
+            <form action="" method="POST">
+                {%csrf_token%}
+                <input type="text" value="search">
+                <input type="submit" value="Add new product"> 
+            </form>
+            <table>
+                <tr>
+                    <th>Picture</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Inventory Count</th>
+                    <th>Quantity Sold</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>(future picture)</td>
+                    <td>(future ID)</td>
+                    <td>(future name)</td>
+                    <td>(future inventorycount)</td>
+                    <td>(future qty)</td>
+                    <td><a href="/edit">edit</a><a href="">delete</a></td>
+                </tr>
+            </table>
+        </div>
+        <div id="footer">
+            <a href="">1</a>
+            <a href="">2</a>
+            <a href="">3</a>
+        </div>
+    </div>
+</body>
+</html>
