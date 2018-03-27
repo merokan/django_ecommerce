@@ -38,10 +38,10 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     user_level = models.IntegerField()
-    objects = userManager()
+    objects = UserManager()
 
 class Address(models.Model):
-    user = models.ForeignKey(User, related_name='client')
+    user = models.ForeignKey(User, related_name='user_addresses')
     address = models.CharField(max_length=100)
     address_2 = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=50)
@@ -50,7 +50,7 @@ class Address(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 class Order(models.Model):
-    user = models.ForeignKey(User, related_name='client')
+    user = models.ForeignKey(User, related_name='user_orders')
     total_price = models.IntegerField()    
     status = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -67,7 +67,7 @@ class Product(models.Model):
     price = models.IntegerField()
     category = models.ForeignKey(Category, related_name='the_products')
     quantity = models.IntegerField()
-    image = models.ImageField()
+    # image = models.ImageField()
     order = models.ForeignKey(Order, related_name='products')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
