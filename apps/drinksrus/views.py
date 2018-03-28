@@ -67,7 +67,19 @@ def admin_login(request):
     
 
 def admindashboard(request):
-    return render(request, "drinksrus/admin_dashboard.html")
+    if not 'id' in request.session:
+        return redirect('/')
+    else:
+        #finding how many pages necessery
+        totalorders = int(math.ceil(Product.objects.all().count()/5))
+        pagelist = [0] * totalpages
+        for i in range (totalorders):
+            pagelist[i] = i+1
+            
+        context = {
+            'orders' : Order.objects.all(),
+        }
+    return render(request, "drinksrus/admin_dashboard.html", context)
 
 def home(request, pagenum):
     if not 'id' in request.session:
@@ -98,17 +110,12 @@ def search (request):
         return render(request, 'drinksrus/home.html', context)
     else:
         return redirect('/')
-<<<<<<< HEAD
-def product(request, prodnum):
-    context ={
-=======
-def admindashboard(request):
-    return render(request, "drinksrus/admin_dashboard.html")
->>>>>>> latest commit
 
-    }
-    return render (request,'drinksrus/product.html',context)
+def product(request, prodnum):
+
+    return render (request,'drinksrus/product.html')
+
+
 def logout(request):
-    del request.session['id']
-    del request.session['cart']
+    request.session.clear()
     return redirect('/')
