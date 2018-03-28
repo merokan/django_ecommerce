@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 import re
 import datetime
+import bcrypt
 
 class UserManager(models.Manager):
     def register(self, postData):
@@ -28,7 +29,32 @@ class UserManager(models.Manager):
 
     def login(self, postData):
         errors = {}
+        userList=User.objects.filter(email=postData['email'])
+        if len(userList)>0: #if email is valid
+            user = User.objects.get(email=postData['email'])
+            if bcrypt.checkpw(postData['password'].encode(), user.password.encode()): # if password matches
+                return errors
+            else:
+                errors['password'] ="password doesn't match"
+        else:
+            errors["email"]="email does not exist"
+
         return errors 
+
+    def admin_login(self, postData):
+        errors = {}
+        userList=User.objects.filter(email=postData['email'])
+        if len(userList)>0: #if email is valid
+            user = User.objects.get(email=postData['email'])
+            if bcrypt.checkpw(postData['password'].encode(), user.password.encode()): # if password matches
+                if user.user_level <3: #if user NOT an admin
+                    errors['admin'] ="admin doesn't exist"  
+            else:
+                errors['password'] ="password doesn't match"
+        else:
+            errors["email"]="email does not exist"
+
+        return errors
 
 class User(models.Model):
     first_name = models.CharField(max_length=50)
