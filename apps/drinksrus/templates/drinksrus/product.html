@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>(Product Name) | DrinksRUs</title>
+    <title>{{product.item}} | DrinksRUs</title>
 </head>
 <body>
     <div id="wrapper">
         <div id="header">
+            <a href="">Go back</a>
             <h2>Drinks R Us</h2>
             <h4><a href="">Shopping Cart</a></h4>
-            <h4>(# items in cart)</h4>
+            <h4>{{len.cart}}</h4>
         </div>
         <a href="">Go Back</a>
-        <h1>(Product Name)</h1>
+        <h1>{{product.item}}</h1>
+        <p>{{product.description}}</p>
+        <form action="" method="POST">
+            {%csrf_token%}
+            <select name="qty">
+                <option value="1">1 (${{1 * product.price}})</option>
+                <option value="2">2 (${{2 * product.price}})</option>
+                <option value="3">3 (${{3 * product.price}})</option>
+            </select>
+            <input type="select" name="buy" value="Buy">
+        </form>
         <h2>Similar Items</h2>
-        <h3>Future product images, price, and name</h3>
+        {%for product in similarproducts%}
+            <h3>{{product.item}}</h3>
+            <h3>{{product.price}}</h3>
+        {%endfor%}
     </div>
 </body>
 </html>

@@ -10,20 +10,20 @@
         <div id="header">
             <h2>Drinks R Us</h2>
             <h4><a href="">Shopping Cart</a></h4>
-            <h4>( {{cart|length}} items in cart)</h4>
+            <h4>{{len(cart)}}</h4>
         </div>
         <div id="main_content">
             <div id="sidebar">
                 <!-- search form -->
                 <form action = "/search" method="POST">
                     {% csrf_token %}
-                    <input type="text" name="searchName">
+                    <input type="text" name="searchName" value="product name">
                     <input type="submit" value="search">
                 </form>
                 <h3>Categories</h3>
-                <h5>Future Category Names</h5>
-                <h5>Future Category Names</h5>
-                <h5>Future Category Names</h5>
+                {%for category in categories%}
+                    <h5>{{category.category}}</h5>
+                {%endfor%}
                 <h5><a href="">Show All</a></h5>
             </div>
             <div id="categories">
@@ -32,13 +32,15 @@
                         {% if not product in products %}
                             <h4>No products found</h4>
                         {% else %}
-                            <h1>Future Category Name</h1>
+                            <h1>{{}}</h1>
                         {% endif %}
                     </div>
                     <div id="cat_header_right">
                         <h5><a href="">first</a></h5>
                         <h5><a href="">prev</a></h5>
-                        <h5>(current page {{pagenum}})</h5>
+                        {%for pagenum in pagenum%}
+                            {{pagenum}}
+                        {%endfor}
                         <h5><a href="">next</a></h5>
                         <form action="" method="POST">
                             {%csrf_token%}
@@ -49,8 +51,16 @@
                         </form>
                     </div>
                 </div>
-                <!-- <h3>Future product images, price, and name</h3> -->
+                {%for product in products%}
+                    <h3>{{product.item}}</h3>
+                    <h3>{{product.price}}</h3>
+                {%endfor%}
             </div>
+        </div>
+        <div id="footer">
+        {% for page in pagelist %}
+            <h5><a href="/home/{{page}}">{{page}}</a></h5>
+        {% endfor%}
         </div>
     </div>
 </body>

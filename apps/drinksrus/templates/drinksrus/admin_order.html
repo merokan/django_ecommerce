@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order number</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'drinksrus/admin_order_styles.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <h3>Dashboard</h3>
+            <h3><a href="">Orders</a></h3>
+            <h3><a href="">Products</a></h3>
+            <h3><a href="">log out</a></h3>
+        </div>
+        <div id="main_content">
+            <div id="sidebar">
+                <p>Order ID: {{order.id}}</p>
+                <p>Customer shipping info:</p>
+                <p>name: {{order.user.first_name}}</p>
+                <p>address: {{order.user.address}}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

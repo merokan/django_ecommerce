@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Product</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'drinksrus/admin_edit_styles.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <h1>Edit Product - ID {{product.id}}</h1>
+            <button>X</button>
+        </div>
+        <div id="main">
+            <form action="" method="POST">
+                {%csrf_token%}
+                Name: <input type="text" name="name" value={{"product.name"}}>
+                Description: <input type="text" name="desc" value={{"product.description"}}>
+                Categories: <select name="categories">
+                    {%for category in categories%}
+                        <option value={{"product.cateogry"}}>{{product.category}}</option>
+                    {%endfor%}
+                or add new category: <input type="text" name="new_category">
+                Images: (future upload button)
+                <input type="submit" name="cancel" value="Cancel">
+                <input type="submit" name="preview" value="Preview">
+                <input type="submit" name="update" value="Update">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

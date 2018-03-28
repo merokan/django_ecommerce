@@ -30,20 +30,22 @@
                     <th>Total</th>
                     <th>Status</th>
                 </tr>
-                <tr>
-                    <td>(future order#)</td>
-                    <td>(future name)</td>
-                    <td>(future date)</td>
-                    <td>(future billing)</td>
-                    <td>(future total)</td>
-                    <td>(future status)</td>
-                </tr>
+                {%for order in orders%}
+                    <tr>
+                        <td>{{order.id}}</td>
+                        <td>{{order.user.first_name}}</td>
+                        <td>{{order.created_at}}</td>
+                        <td>{{order.user.address}}{{order.user.address2}}</td>
+                        <td>{{order.total_price}}</td>
+                        <td>{{order.status}}</td>
+                    </tr>
+                {%endfor%}
             </table>
         </div>
         <div id="footer">
-            <a href="">1</a>
-            <a href="">2</a>
-            <a href="">3</a>
+            {% for page in pagelist %}
+                <h5><a href="/home/{{page}}">{{page}}</a></h5>
+            {% endfor%}
         </div>
     </div>
 </body>
