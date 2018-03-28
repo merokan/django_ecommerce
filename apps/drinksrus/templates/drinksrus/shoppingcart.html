@@ -10,25 +10,27 @@
         <div id="header">
             <h2>Drinks R Us</h2>
             <h4><a href="">Shopping Cart</a></h4>
-            <h4>(# items in cart)</h4>
+            <h4>{{cart}}</h4>
         </div>
         <div id="cart">
-            <table>
+            <table id="cart_table">
                 <tr>
                     <th>Item</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total</th>
                 </tr>
-                <tr>
-                    <td>Future Item</td>
-                    <td>Future Price</td>
-                    <td>Future Qty</td>
-                    <td>Future Total</td>
-                </tr>
+                {%for product in products}
+                    <tr>
+                        <td>{{product.item}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.quantity}}</td>
+                        <td>{{price * quantity}}</td>
+                    </tr>
+                {%endfor%}
             </table>
             <h5>Total:</h5>
-            <a href=""><button>Continue Shopping</button></a>
+            <a href="/home"><button>Continue Shopping</button></a>
         </div>
         <div id="info">
             <h2>Shipping Information</h2>
@@ -54,7 +56,7 @@
                 Card Number: <input type="text">
                 Security Code: <input type="text">
                 Expiration: <input type="date">
-                <input type="submit" value="Pay">
+                <input type="submit" name="pay" value="Pay">
             </form>
         </div>
     </div>

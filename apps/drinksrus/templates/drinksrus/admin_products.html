@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Admin Products</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'drinksrus/admin_product_styles.css' %}">
 </head>
 <body>
     <div id="wrapper">
@@ -15,9 +17,9 @@
             <form action="" method="POST">
                 {%csrf_token%}
                 <input type="text" value="search">
-                <input type="submit" value="Add new product"> 
+                <input type="submit" name="addnew" value="Add new product"> 
             </form>
-            <table>
+            <table id="product_table">
                 <tr>
                     <th>Picture</th>
                     <th>ID</th>
@@ -37,9 +39,9 @@
             </table>
         </div>
         <div id="footer">
-            <a href="">1</a>
-            <a href="">2</a>
-            <a href="">3</a>
+            {% for page in pagelist %}
+                <h5><a href="/home/{{page}}">{{page}}</a></h5>
+            {% endfor%}
         </div>
     </div>
 </body>

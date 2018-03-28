@@ -16,9 +16,10 @@
                 {%csrf_token%}
                 <input type="text" value="search">
                 <select name="status">
-                    <option value="show_all">Show All</option>
-                    <option value="process">Order In Process</option>
-                    <option value="shipped">Shipped</option>
+                    <option value="0">Show All</option>
+                    <option value="1">Order In Process</option>
+                    <option value="2">Shipped</option>
+                    <option value="3">Cancelled</option>
                 </select>  
             </form>
             <table>
@@ -30,20 +31,22 @@
                     <th>Total</th>
                     <th>Status</th>
                 </tr>
-                <tr>
-                    <td>(future order#)</td>
-                    <td>(future name)</td>
-                    <td>(future date)</td>
-                    <td>(future billing)</td>
-                    <td>(future total)</td>
-                    <td>(future status)</td>
-                </tr>
+                {%for order in orders%}
+                    <tr>
+                        <td>{{order.id}}</td>
+                        <td>{{order.user.first_name}}</td>
+                        <td>{{order.created_at}}</td>
+                        <td>{{order.user.address}}{{order.user.address2}}</td>
+                        <td>{{order.total_price}}</td>
+                        <td>{{order.status}}</td>
+                    </tr>
+                {%endfor%}
             </table>
         </div>
         <div id="footer">
-            <a href="">1</a>
-            <a href="">2</a>
-            <a href="">3</a>
+            {% for page in pagelist %}
+                <h5><a href="/home/{{page}}">{{page}}</a></h5>
+            {% endfor%}
         </div>
     </div>
 </body>
