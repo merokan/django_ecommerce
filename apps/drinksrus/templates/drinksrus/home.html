@@ -10,7 +10,7 @@
         <div id="header">
             <h2>Drinks R Us</h2>
             <h4><a href="">Shopping Cart</a></h4>
-            <h4>{{len(cart)}}</h4>
+            <h4>{{cart}}</h4>
         </div>
         <div id="main_content">
             <div id="sidebar">
@@ -24,23 +24,17 @@
                 {%for category in categories%}
                     <h5>{{category.category}}</h5>
                 {%endfor%}
-                <h5><a href="">Show All</a></h5>
+                <h5><a href="/home">Show All</a></h5>
             </div>
             <div id="categories">
                 <div id="categories_header">
                     <div id="cat_header_left">
-                        {% if not product in products %}
-                            <h4>No products found</h4>
-                        {% else %}
-                            <h1>{{}}</h1>
-                        {% endif %}
+                        <h2>{{categories.category}} (page {{pagenum}})</h2>
                     </div>
                     <div id="cat_header_right">
                         <h5><a href="">first</a></h5>
                         <h5><a href="">prev</a></h5>
-                        {%for pagenum in pagenum%}
-                            {{pagenum}}
-                        {%endfor}
+                        <h5>{{pagenum}}</h5>
                         <h5><a href="">next</a></h5>
                         <form action="" method="POST">
                             {%csrf_token%}
