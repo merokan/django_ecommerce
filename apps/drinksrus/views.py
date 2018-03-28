@@ -9,6 +9,11 @@ def index(request):
     
     return render(request, 'drinksrus/index.html')
 
+def admin_login(request):
+    request.session.clear()
+    
+    return render(request, 'drinksrus/admin_login.html')
+
 def register(request):
     errors = User.objects.register(request.POST)
     if len(errors):
@@ -93,8 +98,13 @@ def search (request):
         return render(request, 'drinksrus/home.html', context)
     else:
         return redirect('/')
+<<<<<<< HEAD
 def product(request, prodnum):
     context ={
+=======
+def admindashboard(request):
+    return render(request, "drinksrus/admin_dashboard.html")
+>>>>>>> latest commit
 
     }
     return render (request,'drinksrus/product.html',context)

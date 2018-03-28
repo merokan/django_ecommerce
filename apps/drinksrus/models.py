@@ -76,7 +76,7 @@ class Address(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 class Order(models.Model):
-    user = models.ForeignKey(User, related_name='user_orders', null=True)
+    user = models.ForeignKey(User, related_name='user_orders')
     total_price = models.IntegerField()    
     status = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -91,10 +91,10 @@ class Product(models.Model):
     item = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
     price = models.IntegerField()
-    category = models.ForeignKey(Category, related_name='the_products', null=True)
+    category = models.ForeignKey(Category, related_name='the_products')
     quantity = models.IntegerField()
     # image = models.ImageField()
-    order = models.ForeignKey(Order, related_name='products', null=True)
+    order = models.ForeignKey(Order, related_name='products')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -107,7 +107,7 @@ class Review(models.Model):
 
 class Comment(models.Model):
     comment = models.TextField()
-    review = models.ForeignKey(Review, related_name='comments',null=True)
+    review = models.ForeignKey(Review, related_name='comments')
     user = models.ForeignKey(User, related_name='comments')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

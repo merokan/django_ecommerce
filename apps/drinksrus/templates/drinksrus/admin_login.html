@@ -8,7 +8,7 @@
 <body>
     <div id="login">
         <h2>Admin Login Page</h2>
-        <form action="/adminlogin" method="POST">
+        <form action="/login" method="POST">
             {% csrf_token %}
             email: <input type="text" name="email"><br><br>
             password: <input type="password" name="password"><br><br>
